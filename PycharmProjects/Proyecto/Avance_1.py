@@ -1,6 +1,34 @@
 import os
+import time
+from multiprocessing import Process
 
+def start():
+    print ('Hola, soy tu task manager.                  \
+    Que gustarias hacer? \n                             \
+    \nA) Obtener Una Lista De Tus Procesos              \
+    \nB) Guardar Tus Procesos \nC) Hacer Map Disk\n')   
+    Accion = raw_input()
+    if(str(Accion).upper() == 'A'):
+        Lista_Procesos()
+        start()
+    if(str(Accion).upper() == 'B'):
+        print ('\nG u a r d a n d o  P r o c e s o')
+        sleep(0.5)
+        Guardando()
+        start()
+    if(str(Accion).upper() == 'C'):
+        print ('Mostrando Disk')
+        Datos_MapDisk()
+        start()
 
+def Lista_Procesos():
+    print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
+    X = raw_input()
+    if(str(X).upper() == 'A'):
+        os.system('ps -e -o pcpu,cpu,cputime,args --sort pcpu ')
+    if (str(X).upper() == 'B'):
+        os.system('ps aux --width 30 --sort -rss')
+        
 def get_size(the_path):
     path_size = 0
     for path, directories, files in os.walk(the_path):
@@ -32,10 +60,12 @@ def Datos_MapDisk():
     for i in content_list:
         size_list.append(bytes2human(get_size(i)))
         print(i, bytes2human(get_size(i)))
+    
+    if __name__=="__main__":
+    Datos_MapDisk()
 
 def Guardando():
     os.system("ps aux > process_list.txt")
     print ("Se lista de procesos se ha generado")
 
-if __name__=="__main__":
-    Datos_MapDisk()
+start()
