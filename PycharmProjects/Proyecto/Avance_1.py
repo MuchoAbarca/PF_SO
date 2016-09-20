@@ -33,6 +33,9 @@ def Datos_MapDisk():
         size_list.append(bytes2human(get_size(i)))
         print(i, bytes2human(get_size(i)))
 
+def Guardando():
+    os.system("ps aux > process_list.txt")
+    print ("Se lista de procesos se ha generado")
 
 if __name__=="__main__":
     Datos_MapDisk()
