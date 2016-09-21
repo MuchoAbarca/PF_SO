@@ -33,7 +33,14 @@ def parent(num_process):
             child()
 
 def process_killer(process_id):
-    os.kill(process_id, 0
+    os.kill(process_id, 0)
+    #revisar si en efecto se acabó con el proceso
+    try:
+        os.kill(proccess_id, 0)
+    except OSError:
+        return False
+    else:
+        return True
     
 def Lista_Procesos():
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
