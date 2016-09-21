@@ -71,16 +71,40 @@ def bytes2human(n):
             return '%.1f%s' % (value, s)
     return "%sB" % n
 
-def Datos_MapDisk():
-    rootDir = '/home'
-    content_list = []
-    for dirName, subdirList, fileList in os.walk(rootDir, topdown=False):
-        content_list.append(dirName)
+def get_file(pattern):
+    total_B=0
+    total_num=0
 
-    size_list = []
-    for i in content_list:
-        size_list.append(bytes2human(get_size(i)))
-        print(i, bytes2human(get_size(i)))
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            for a in pattern:
+                if fnmatch(name, a):
+                    total_B+=(get_size(os.path.join(path, name)))
+                    total_num+=1
+    print total_num
+    print bytes2human(total_B)
+
+def Datos_MapDisk():
+    #texto
+    print "Archivos de texto:"
+    pattern=["*.dic","*.doc","*.diz","*.dochtml","*.exc","*.idx","*.log","*.pdf","*.rtf","*.scp","*.txt","*.wri","*.wtx"]
+    get_file(pattern)
+    #comprimidos
+    print "Archivos comprimidos:"
+    pattern = ["*.ace","*.arj","*.bz","*.bz2","*.cab","*.gz","*.ha","*.iso","*.lha","*.lzh","*.r00","*.r01","*.r02","*.r03","*.r0","*.rar","*.tar","*.tbz","*.tbz2","*.tgz","*.uu","*.uue","*.xxe","*.zip","*.zoo"]
+    get_file(pattern)
+    #video
+    print "Archivos de video:"
+    pattern=["*.asf","*.avi","*.bik","*.div","*.divx","*.dvd","*.ivf","*.m1v","*.mov","*.movie","*.mp2v","*.mp4","*.mpa","*.mpe","*.mpeg","*.mpg","*.mpv2","*.qt","*.qtl","*.rpm","*.smk","*.wm","*.wmv","*.wob"]
+    get_file(pattern)
+    #audio
+    print "Archivos de audio:"
+    pattern=["*.669","*.aif","*.aifc","*.aiff","*.amf","*.asf","*.au","*.audiocd","*.cda","*.cdda","*.far","*.it","*.itz","*.lwv","*.mid","*.midi","*.mp1","*.mp2","*.mp3","*.mtm","*.ogg","*.ogm","*.okt","*.ra","*.rmi","*.snd","*.stm","*.stz","*.ult","*.voc","*.wav","*.wax","*.wm","*.wma","*.wmv","*.xm","*.xmz"]
+    get_file(pattern)
+    #imagenes
+    print "Archivos de imagenes:"
+    pattern=["*.ais","*.bmp","*.bw","*.cdr","*.cdt","*.cgm","*.cmx","*.cpt","*.dcx","*.dib","*.emf","*.gbr","*.gif","*.gih","*.ico","*.iff","*.ilbm","*.jfif","*.jif","*.jpe","*.jpeg","*.jpg","*.kdc","*.lbm","*.mac","*.pat","*.pcd","*.pct","*.pcx","*.pic","*.pict","*.png","*.pntg","*.pix","*.psd","*.psp","*.qti","*.qtif","*.rgb","*.rgba","*.rif","*.rle","*.sgi","*.tga","*.tif","*.tiff","*.wmf","*.xcf"]
+    get_file(pattern)
 
 def Guardando():
     os.system("ps aux > process_list.txt")
