@@ -20,7 +20,21 @@ def start():
         print ('Mostrando Disk')
         Datos_MapDisk()
         start()
+def child():
+    print('Hello from child', os.getpid())
+    os._exit(0)
 
+
+def parent(num_process):
+    for num in range(1, num_process):
+
+        newpid = os.fork()
+        if newpid == 0:
+            child()
+
+def process_killer(process_id):
+    os.kill(process_id, 0
+    
 def Lista_Procesos():
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
     X = raw_input()
