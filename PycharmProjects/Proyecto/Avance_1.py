@@ -1,33 +1,48 @@
 import os
 import time
+from os import system
 from multiprocessing import Process
 
 def start():
-    print ('Hola, soy tu task manager.                  \
-    Que gustarias hacer? \n                             \
-    \nA) Obtener Una Lista De Tus Procesos              \
-    \nB) Guardar Tus Procesos \nC) Hacer Map Disk\n')   
+    print ('Hola, soy tu task manager. Que te gustaria hacer?\n \
+     \nA) Obtener Una Lista De Tus Procesos                     \
+     \nB) Crear Un Proceso                                      \
+     \nC) Matar Un Proceso                                      \
+     \nD) Guardar Tus Procesos                                  \
+     \nE) Hacer Map Disk\n')
+
     Accion = raw_input()
     if(str(Accion).upper() == 'A'):
         Lista_Procesos()
         start()
     if(str(Accion).upper() == 'B'):
+        print ('C r e a n d o  P r o c e s o')
+        sleep(0.5)
+        process_maker()
+        start()
+    if (str(Accion).upper() == 'C'):
+        print ('M a t a n d o  P r o c e s o')
+        sleep(0.5)
+        process_killer()
+        start()
+    if(str(Accion).upper() == 'D'):
         print ('\nG u a r d a n d o  P r o c e s o')
         sleep(0.5)
         Guardando()
         start()
-    if(str(Accion).upper() == 'C'):
-        print ('Mostrando Disk')
+    if(str(Accion).upper() == 'E'):
+        print ('M o s t r a n d o  D i s c o')
+        sleep(0.5)
         Datos_MapDisk()
         start()
+        
 def child():
     print('Hello from child', os.getpid())
     os._exit(0)
 
 
-def parent(num_process):
+def process_maker(num_process):
     for num in range(1, num_process):
-
         newpid = os.fork()
         if newpid == 0:
             child()
