@@ -16,3 +16,4 @@ Ricardo Abarca Zamora       - MuchoAbarca
 4. Crear un proceso
 5. Matar un proceso
 ```
+###Todo lo relevante al proyecto esta dentro de PF_SO/PycharmProjects/Proyecto/
