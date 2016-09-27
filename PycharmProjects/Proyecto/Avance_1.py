@@ -3,6 +3,9 @@ import time
 from os import system
 from multiprocessing import Process
 
+root = '/home'
+pattern = []
+
 def start():
     print ('Hola, soy tu task manager. Que te gustaria hacer?\n \
      \nA) Obtener Una Lista De Tus Procesos                     \
