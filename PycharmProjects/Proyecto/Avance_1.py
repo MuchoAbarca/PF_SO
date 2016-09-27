@@ -2,6 +2,7 @@ import os
 from time import sleep
 from os import system
 from multiprocessing import Process
+from fnmatch import fnmatch
 
 root = '/home'
 pattern = []
