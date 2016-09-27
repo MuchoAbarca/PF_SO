@@ -55,6 +55,7 @@ def process_killer():
     print('Escriba PID')
     process_id = input()
     os.kill(process_id, 0)
+    print ('Matamos el proceso: ' + str(process_id))
     
 def Lista_Procesos():
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
