@@ -45,21 +45,16 @@ def child():
     os._exit(0)
 
 
-def process_maker(num_process):
-    for num in range(1, num_process):
+def process_maker():
+    for num in range(1, 5):
         newpid = os.fork()
         if newpid == 0:
             child()
 
-def process_killer(process_id):
+def process_killer():
+    print('Escriba PID')
+    process_id = input()
     os.kill(process_id, 0)
-    #revisar si en efecto se acabó con el proceso
-    try:
-        os.kill(proccess_id, 0)
-    except OSError:
-        return False
-    else:
-        return True
     
 def Lista_Procesos():
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
