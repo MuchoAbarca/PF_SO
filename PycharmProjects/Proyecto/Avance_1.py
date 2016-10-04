@@ -35,8 +35,6 @@ def start():
         Guardando()
         start()
     if(str(Accion).upper() == 'E'):
-        print ('M o s t r a n d o  D i s c o')
-        sleep(0.5)
         Datos_MapDisk()
         start()
         
@@ -57,6 +55,19 @@ def process_killer():
     os.kill(process_id, 0)
     print ('Matamos el proceso: ' + str(process_id))
     
+def Datos_MapDisk():
+     print('Gusta ordenarlo por...\n \tA) Tipo de Archivo\n \tB) Carpetas')
+    X = raw_input()
+    if(str(X).upper() == 'A'):
+        print ('M o s t r a n d o  D i s c o')
+        sleep(0.5)
+        Datos_MapDisk_Archivo()
+    if (str(X).upper() == 'B'):
+        print ('M o s t r a n d o  D i s c o')
+        sleep(0.5)
+        Datos_MapDisk_Carpeta()
+
+        
 def Lista_Procesos():
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
     X = raw_input()
@@ -99,7 +110,7 @@ def get_file(pattern):
     print total_num
     print bytes2human(total_B)
 
-def Datos_MapDisk():
+def Datos_MapDisk_Archivo():
     #texto
     print "Archivos de texto:"
     pattern=["*.dic","*.doc","*.diz","*.dochtml","*.exc","*.idx","*.log","*.pdf","*.rtf","*.scp","*.txt","*.wri","*.wtx"]
@@ -121,6 +132,17 @@ def Datos_MapDisk():
     pattern=["*.ais","*.bmp","*.bw","*.cdr","*.cdt","*.cgm","*.cmx","*.cpt","*.dcx","*.dib","*.emf","*.gbr","*.gif","*.gih","*.ico","*.iff","*.ilbm","*.jfif","*.jif","*.jpe","*.jpeg","*.jpg","*.kdc","*.lbm","*.mac","*.pat","*.pcd","*.pct","*.pcx","*.pic","*.pict","*.png","*.pntg","*.pix","*.psd","*.psp","*.qti","*.qtif","*.rgb","*.rgba","*.rif","*.rle","*.sgi","*.tga","*.tif","*.tiff","*.wmf","*.xcf"]
     get_file(pattern)
 
+def Datos_MapDisk_Carpeta():
+    rootDir = '/home'
+    content_list = []
+    for dirName, subdirList, fileList in os.walk(rootDir, topdown=False):
+        content_list.append(dirName)
+    size_list = []
+    for i in content_list:
+        size_list.append(bytes2human(get_size(i)))
+        print(i, bytes2human(get_size(i)))
+    
+    
 def Guardando():
     os.system("ps aux > process_list.txt")
     print ("Se lista de procesos se ha generado")
