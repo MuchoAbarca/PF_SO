@@ -13,7 +13,8 @@ def start():
      \nB) Crear Un Proceso                                      \
      \nC) Matar Un Proceso                                      \
      \nD) Guardar Tus Procesos                                  \
-     \nE) Hacer Map Disk\n')
+     \nE) Hacer Map Disk                                        \
+     \nS) Salir\n')
 
     Accion = raw_input()
     if(str(Accion).upper() == 'A'):
@@ -37,6 +38,10 @@ def start():
     if(str(Accion).upper() == 'E'):
         Datos_MapDisk()
         start()
+    if (str(Accion).upper() == 'S'):
+        print ('\nC e r r a n d o')
+        sleep(0.3)
+        quit()
         
 def child():
     print('Hello from child', os.getpid())
