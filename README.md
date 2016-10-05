@@ -20,7 +20,7 @@ Ricardo Abarca Zamora       - MuchoAbarca
 ##Lo que sigue para el Avance 2
 
 ```
-1.  La tabla de procesos es interface grafica 
+1.  La tabla de procesos en interfaz grafica 
     (se tiene que estar refrescando para que mostrar la lista sea lo mas parecido a la realidad)
 2.  Capacidad de ordenar la tabla por cualquier columna.
 3.  Capacidad de seleccionar un proceso de la tabla y matarlo.
