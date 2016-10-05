@@ -21,8 +21,7 @@ Ricardo Abarca Zamora       - MuchoAbarca
 
 ```
 1.  La tabla de procesos es interface grafica 
-    (se tiene que estar refrescando para que mostrar la lista 
-    sea lo mas parecido a la realidad)
+    (se tiene que estar refrescando para que mostrar la lista sea lo mas parecido a la realidad)
 2.  Capacidad de ordenar la tabla por cualquier columna.
 3.  Capacidad de seleccionar un proceso de la tabla y matarlo.
 4.  Grafica de distribución del disco duro:
