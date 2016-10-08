@@ -1,13 +1,16 @@
 import os
-from time import sleep
+import logging
 from os import system
-from multiprocessing import Process
+from time import sleep
+from logging import handler
 from fnmatch import fnmatch
+from multiprocessing import Process
 
 root = '/home'
 pattern = []
 
 def start():
+    
     print ('Hola, soy tu task manager. Que te gustaria hacer?\n \
      \nA) Obtener Una Lista De Tus Procesos                     \
      \nB) Crear Un Proceso                                      \
@@ -44,23 +47,27 @@ def start():
         quit()
         
 def child():
+    
     print('Hello from child', os.getpid())
     os._exit(0)
 
 
 def process_maker():
+    
     for num in range(1, 5):
         newpid = os.fork()
         if newpid == 0:
             child()
 
 def process_killer():
+    
     print('Escriba PID')
     process_id = input()
     os.kill(process_id, 0)
     print ('Matamos el proceso: ' + str(process_id))
     
 def Datos_MapDisk():
+    
      print('Gusta ordenarlo por...\n \tA) Tipo de Archivo\n \tB) Carpetas')
     X = raw_input()
     if(str(X).upper() == 'A'):
@@ -74,6 +81,7 @@ def Datos_MapDisk():
 
         
 def Lista_Procesos():
+    
     print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
     X = raw_input()
     if(str(X).upper() == 'A'):
@@ -82,6 +90,7 @@ def Lista_Procesos():
         os.system('ps aux --width 30 --sort -rss')
         
 def get_size(the_path):
+    
     path_size = 0
     for path, directories, files in os.walk(the_path):
         for filename in files:
@@ -103,17 +112,18 @@ def bytes2human(n):
     return "%sB" % n
 
 def get_file(pattern):
-    total_B=0
+    
+    total_b=0
     total_num=0
 
     for path, subdirs, files in os.walk(root):
         for name in files:
             for a in pattern:
                 if fnmatch(name, a):
-                    total_B+=(get_size(os.path.join(path, name)))
+                    total_b+=(get_size(os.path.join(path, name)))
                     total_num+=1
     print total_num
-    print bytes2human(total_B)
+    print bytes2human(total_b)
 
 def Datos_MapDisk_Archivo():
     #texto
@@ -138,6 +148,7 @@ def Datos_MapDisk_Archivo():
     get_file(pattern)
 
 def Datos_MapDisk_Carpeta():
+    
     rootDir = '/home'
     content_list = []
     for dirName, subdirList, fileList in os.walk(rootDir, topdown=False):
@@ -147,9 +158,14 @@ def Datos_MapDisk_Carpeta():
         size_list.append(bytes2human(get_size(i)))
         print(i, bytes2human(get_size(i)))
     
-    
 def Guardando():
-    os.system("ps aux > process_list.txt")
-    print ("Se lista de procesos se ha generado")
+    
+    os.system("ps aux > Process_Log.log")
+    print ("Se lista de procesos se ha guardado")
+    log_handler = logging.handlers.RotatingFileHandler('Process_Log.log', maxBytes=200000000, backupCount=51)
+    log = logging.getLogger()
+    log.setLevel(logging.INFO)
+    log.addHandler(log_handler)
+    log.info(os.system("ps aux > Process_Log.log"))
 
 start()
