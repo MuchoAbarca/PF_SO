@@ -32,4 +32,4 @@ Ricardo Abarca Zamora       - MuchoAbarca
 7.  Minimo 10 GB de logs.
 ```
 
-#Todo lo relevante al proyecto esta dentro de PF_SO/PycharmProjects/Proyecto/
+#Todo lo relevante al proyecto esta dentro de: PF_SO/PycharmProjects/Proyecto/
