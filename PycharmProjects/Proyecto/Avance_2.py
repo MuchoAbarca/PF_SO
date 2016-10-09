@@ -1,7 +1,9 @@
 import os
 import logging
+import plotly.plotly as py
 from os import system
 from time import sleep
+from plotly.graph_objs import *
 from logging import handler
 from fnmatch import fnmatch
 from multiprocessing import Process
