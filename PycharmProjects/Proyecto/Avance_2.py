@@ -147,6 +147,100 @@ def Datos_MapDisk_Archivo():
     pattern=["*.ais","*.bmp","*.bw","*.cdr","*.cdt","*.cgm","*.cmx","*.cpt","*.dcx","*.dib","*.emf","*.gbr","*.gif","*.gih","*.ico","*.iff","*.ilbm","*.jfif","*.jif","*.jpe","*.jpeg","*.jpg","*.kdc","*.lbm","*.mac","*.pat","*.pcd","*.pct","*.pcx","*.pic","*.pict","*.png","*.pntg","*.pix","*.psd","*.psp","*.qti","*.qtif","*.rgb","*.rgba","*.rif","*.rle","*.sgi","*.tga","*.tif","*.tiff","*.wmf","*.xcf"]
     get_file(pattern)
 
+    # Ejecutables
+    print "Aplicaciones:"
+    pat = [".action", ".apk", ".app", ".bat", ".bin", ".cmd", ".com", ".command", ".cpl", ".csh", ".exe",
+           ".gadget", ".inf", ".ins", ".inx", ".ipa", ".isu", ".job", ".jse", ".ksh", ".lnk", ".msc",
+           ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
+           ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
+    get_file(pat)
+
+    py.sign_in('username', 'api_key')
+    trace1 = Bar(
+        x=[20],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(129, 216, 208, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Apps',
+        orientation='h'
+    )
+    trace2 = Bar(
+        x=[10],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(217, 130, 139, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Photos',
+        orientation='h'
+    )
+    trace3 = Bar(
+        x=[25],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(200, 162, 200, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Audio',
+        orientation='h'
+    )
+    trace4 = Bar(
+        x=[30],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(128, 140, 255, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Movies',
+        orientation='h'
+    )
+    trace5 = Bar(
+        x=[5],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(255, 243, 128, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Other',
+        orientation='h'
+    )
+    trace6 = Bar(
+        x=[5],
+        y=['Data'],
+        marker=Marker(
+            color='rgba(255, 255, 255, 0.6)',
+            line=Line(
+                color='rgba(color, 1.0)',
+                width=2
+            )
+        ),
+        name='Available',
+        orientation='h'
+    )
+    data = Data([trace1, trace2, trace3, trace4, trace5, trace6])
+    layout = Layout(
+        barmode='stack'
+    )
+    fig = Figure(data=data, layout=layout)
+    py.plot(fig)
+    
 def Datos_MapDisk_Carpeta():
     
     rootDir = '/home'
