@@ -32,7 +32,7 @@ Ricardo Abarca Zamora       - MuchoAbarca
 7.  Minimo 10 GB de logs.
 ```
 ##Algunas consideraciones adicionales
-EL proyecto hace uso de la libreria de Python para graficas conocida como Plotly para ello se requieren algunos pasos previos, notablemente el instalar el paquete de plotly. Entonces en la terminal se ingresa lo siguiente
+El proyecto hace uso de la libreria de Python para graficas conocida como Plotly para ello se requieren algunos pasos previos, notablemente el instalar el paquete de plotly. Entonces en la terminal se ingresa lo siguiente
 $sudo pip install plotly
 (Notese el uso del administrador de paquetes pip, por lo que una descarga de este puede ser necesario)
 
