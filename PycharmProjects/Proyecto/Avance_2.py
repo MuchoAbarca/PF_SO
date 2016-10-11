@@ -1,6 +1,8 @@
 import os
 import logging
 import plotly.plotly as py
+from Tkinter import *
+import ttk
 from os import system
 from time import sleep
 from plotly.graph_objs import *
@@ -298,3 +300,19 @@ def Guardando():
     log.info(os.system("ps aux > Process_Log.log"))
 
 start()
+v0 = Tk()
+v0.config(bg = "white")
+v0.geometry("500x500")
+tree = ttk.Treeview(v0)
+tree["columns"] = ("one", "two", "three", "four")
+tree.column("one", width  = 100)
+tree.column("two", width = 100)
+tree.column("three", width = 100)
+tree.column("four", width = 100)
+tree.heading("one", text = "CPU" )
+tree.heading("two", text = "Memory")
+tree.heading("three", text = "Disk")
+tree.heading("four", text = "Network")
+tree.insert("", 0, text = "Applications", values=("0%", "145.6 MB", "0 MB/s", "O Mbps"))
+tree.pack()
+v0.mainloop()
