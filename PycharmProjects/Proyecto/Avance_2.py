@@ -113,50 +113,81 @@ def bytes2human(n):
             return '%.1f%s' % (value, s)
     return "%sB" % n
 
-def get_file(pattern):
-    
-    total_b=0
-    total_num=0
-
-    for path, subdirs, files in os.walk(root):
-        for name in files:
-            for a in pattern:
-                if fnmatch(name, a):
-                    total_b+=(get_size(os.path.join(path, name)))
-                    total_num+=1
-    print total_num
-    print bytes2human(total_b)
-
-def Datos_MapDisk_Archivo():
-    #texto
-    print "Archivos de texto:"
-    pattern=["*.dic","*.doc","*.diz","*.dochtml","*.exc","*.idx","*.log","*.pdf","*.rtf","*.scp","*.txt","*.wri","*.wtx"]
-    get_file(pattern)
-    #comprimidos
-    print "Archivos comprimidos:"
-    pattern = ["*.ace","*.arj","*.bz","*.bz2","*.cab","*.gz","*.ha","*.iso","*.lha","*.lzh","*.r00","*.r01","*.r02","*.r03","*.r0","*.rar","*.tar","*.tbz","*.tbz2","*.tgz","*.uu","*.uue","*.xxe","*.zip","*.zoo"]
-    get_file(pattern)
-    #video
-    print "Archivos de video:"
-    pattern=["*.asf","*.avi","*.bik","*.div","*.divx","*.dvd","*.ivf","*.m1v","*.mov","*.movie","*.mp2v","*.mp4","*.mpa","*.mpe","*.mpeg","*.mpg","*.mpv2","*.qt","*.qtl","*.rpm","*.smk","*.wm","*.wmv","*.wob"]
-    get_file(pattern)
-    #audio
-    print "Archivos de audio:"
-    pattern=["*.669","*.aif","*.aifc","*.aiff","*.amf","*.asf","*.au","*.audiocd","*.cda","*.cdda","*.far","*.it","*.itz","*.lwv","*.mid","*.midi","*.mp1","*.mp2","*.mp3","*.mtm","*.ogg","*.ogm","*.okt","*.ra","*.rmi","*.snd","*.stm","*.stz","*.ult","*.voc","*.wav","*.wax","*.wm","*.wma","*.wmv","*.xm","*.xmz"]
-    get_file(pattern)
-    #imagenes
-    print "Archivos de imagenes:"
-    pattern=["*.ais","*.bmp","*.bw","*.cdr","*.cdt","*.cgm","*.cmx","*.cpt","*.dcx","*.dib","*.emf","*.gbr","*.gif","*.gih","*.ico","*.iff","*.ilbm","*.jfif","*.jif","*.jpe","*.jpeg","*.jpg","*.kdc","*.lbm","*.mac","*.pat","*.pcd","*.pct","*.pcx","*.pic","*.pict","*.png","*.pntg","*.pix","*.psd","*.psp","*.qti","*.qtif","*.rgb","*.rgba","*.rif","*.rle","*.sgi","*.tga","*.tif","*.tiff","*.wmf","*.xcf"]
-    get_file(pattern)
-
-    # Ejecutables
-    print "Aplicaciones:"
-    pat = [".action", ".apk", ".app", ".bat", ".bin", ".cmd", ".com", ".command", ".cpl", ".csh", ".exe",
+ddef get_file():
+    total_bT = 0
+    total_numT = 0
+    patternT = ["*.dic", "*.doc", "*.diz", "*.dochtml", "*.exc", "*.idx", "*.log", "*.pdf", "*.rtf", "*.scp", "*.txt",
+               "*.wri", "*.wtx"]
+    total_bC = 0
+    total_numC = 0
+    patternC = ["*.ace", "*.arj", "*.bz", "*.bz2", "*.cab", "*.gz", "*.ha", "*.iso", "*.lha", "*.lzh", "*.r00", "*.r01",
+               "*.r02", "*.r03", "*.r0", "*.rar", "*.tar", "*.tbz", "*.tbz2", "*.tgz", "*.uu", "*.uue", "*.xxe",
+               "*.zip", "*.zoo"]
+    total_bV = 0
+    total_numV = 0
+    patternV = ["*.asf", "*.avi", "*.bik", "*.div", "*.divx", "*.dvd", "*.ivf", "*.m1v", "*.mov", "*.movie", "*.mp2v",
+               "*.mp4", "*.mpa", "*.mpe", "*.mpeg", "*.mpg", "*.mpv2", "*.qt", "*.qtl", "*.rpm", "*.smk", "*.wm",
+               "*.wmv", "*.wob"]
+    total_bA = 0
+    total_numA = 0
+    patternA = ["*.669", "*.aif", "*.aifc", "*.aiff", "*.amf", "*.asf", "*.au", "*.audiocd", "*.cda", "*.cdda", "*.far",
+               "*.it", "*.itz", "*.lwv", "*.mid", "*.midi", "*.mp1", "*.mp2", "*.mp3", "*.mtm", "*.ogg", "*.ogm",
+               "*.okt", "*.ra", "*.rmi", "*.snd", "*.stm", "*.stz", "*.ult", "*.voc", "*.wav", "*.wax", "*.wm", "*.wma",
+               "*.wmv", "*.xm", "*.xmz"]
+    total_bI = 0
+    total_numI = 0
+    patternI = ["*.ais", "*.bmp", "*.bw", "*.cdr", "*.cdt", "*.cgm", "*.cmx", "*.cpt", "*.dcx", "*.dib", "*.emf",
+               "*.gbr", "*.gif", "*.gih", "*.ico", "*.iff", "*.ilbm", "*.jfif", "*.jif", "*.jpe", "*.jpeg", "*.jpg",
+               "*.kdc", "*.lbm", "*.mac", "*.pat", "*.pcd", "*.pct", "*.pcx", "*.pic", "*.pict", "*.png", "*.pntg",
+               "*.pix", "*.psd", "*.psp", "*.qti", "*.qtif", "*.rgb", "*.rgba", "*.rif", "*.rle", "*.sgi", "*.tga",
+               "*.tif", "*.tiff", "*.wmf", "*.xcf"]
+    total_bAP = 0
+    total_numAP = 0
+    patternAP = [".action", ".apk", ".app", ".bat", ".bin", ".cmd", ".com", ".command", ".cpl", ".csh", ".exe",
            ".gadget", ".inf", ".ins", ".inx", ".ipa", ".isu", ".job", ".jse", ".ksh", ".lnk", ".msc",
            ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
            ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
-    get_file(pat)
 
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            for a in patternT:
+                if fnmatch(name, a):
+                    total_bT += (get_size(os.path.join(path, name)))
+                    total_numT += 1
+            for a in patternC:
+                if fnmatch(name, a):
+                    total_bC += (get_size(os.path.join(path, name)))
+                    total_numC += 1
+            for a in patternA:
+                if fnmatch(name, a):
+                    total_bA += (get_size(os.path.join(path, name)))
+                    total_numA += 1
+            for a in patternI:
+                if fnmatch(name, a):
+                    total_bI += (get_size(os.path.join(path, name)))
+                    total_numI += 1
+            for a in patternAP:
+                if fnmatch(name, a):
+                    total_bAP += (get_size(os.path.join(path, name)))
+                    total_numAP += 1
+            for a in patternV:
+                if fnmatch(name, a):
+                    total_bV += (get_size(os.path.join(path, name)))
+                    total_numV += 1
+                    
+    print bytes2human(total_bT)
+    print bytes2human(total_bC)
+    print bytes2human(total_bA)
+    print bytes2human(total_bI)
+    print bytes2human(total_bAP)
+    print bytes2human(total_bV)
+
+
+def Datos_MapDisk_Archivo():
+    
+    get_file()
+    
+def grafica():
     py.sign_in('username', 'api_key')
     trace1 = Bar(
         x=[20],
@@ -242,6 +273,7 @@ def Datos_MapDisk_Archivo():
     )
     fig = Figure(data=data, layout=layout)
     py.plot(fig)
+
     
 def Datos_MapDisk_Carpeta():
     
