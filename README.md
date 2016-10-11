@@ -36,4 +36,7 @@ El proyecto hace uso de la libreria de Python para graficas conocida como Plotly
 $sudo pip install plotly
 (Notese el uso del administrador de paquetes pip, por lo que una descarga de este puede ser necesario)
 
+Adicionalmente, se usade de Tkinter que es una interfaz con el toolkit para GUI tk, mismo que viene incluido con la distribución de Python. Para usar Tkinter se debe de realizar una instalación, que se logra mediante el siguiente comando en terminal
+sudo apt-get install python-tk
+
 #Todo lo relevante al proyecto esta dentro de: PF_SO/PycharmProjects/Proyecto/
