@@ -175,19 +175,20 @@ ddef get_file():
                     total_bV += (get_size(os.path.join(path, name)))
                     total_numV += 1
                     
-    print bytes2human(total_bT)
-    print bytes2human(total_bC)
-    print bytes2human(total_bA)
-    print bytes2human(total_bI)
-    print bytes2human(total_bAP)
-    print bytes2human(total_bV)
+    total_bHT=bytes2human(total_bT)
+    total_bHC=bytes2human(total_bC)
+    total_bHA=bytes2human(total_bA)
+    total_bHI=bytes2human(total_bI)
+    total_bHAP=bytes2human(total_bAP)
+    total_bHV=bytes2human(total_bV)
 
+    grafica(total_bT,total_bC,total_bA,total_bI,total_bAP,total_bV,total_bHT,total_bHC,total_bHA,total_bHI,total_bHAP,total_bHV)
 
 def Datos_MapDisk_Archivo():
     
     get_file()
     
-def grafica():
+def grafica(total_bT,total_bC,total_bA,total_bI,total_bAP,total_bV,total_bHT,total_bHC,total_bHA,total_bHI,total_bHAP,total_bHV):
     py.sign_in('username', 'api_key')
     trace1 = Bar(
         x=[20],
