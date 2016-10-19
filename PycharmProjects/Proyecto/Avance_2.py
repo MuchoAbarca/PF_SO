@@ -251,6 +251,24 @@ def something():
     print('This is something')
 def Cancel():
     print ('Nothing')
+def TabChange(event):
+    print (notebook.select())
+    print (notebook.index(notebook.select()))
+    if(notebook.index(notebook.select()) == 0):
+        print ('Case 1')
+    elif(notebook.index(notebook.select()) == 1):
+        print ('Case 2')
+        #Aqui es donde deberia ir la funcion para hacer la grafica
+        #d = DynamicUpdate()
+        #d()
+    elif(notebook.index(notebook.select()) == 2):
+        print ('Case 3')
+        #d = DynamicUpdate()
+        #d()
+    elif(notebook.index(notebook.select()) == 3):
+        print('Case 4')
+    else:
+        print('Case 5')
     
 v0 = Tk()
 v0.config(bg = "white")
@@ -305,6 +323,8 @@ notebook.add(tree3, text = 'Mem')
 #agregar las pestanas del mapdisk a la ventana
 notebook.add(MDA, text='MapDisk de Archivos')
 notebook.add(MDC, text='MapDisk de Carpetas')
+#Detectar el cambio de tab
+notebook.bind("<ButtonRelease-1>", TabChange)
 v0.mainloop()
 #import matplotlib.pyplot as plt
 #plt.ion()
