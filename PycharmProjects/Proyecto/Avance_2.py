@@ -9,6 +9,8 @@ from plotly.graph_objs import *
 from logging import handler
 from fnmatch import fnmatch
 from multiprocessing import Process
+import numpy as np
+import matplotlib.pyplot as plt
 
 root = '/'
 pattern = []
@@ -114,8 +116,9 @@ def bytes2human(n):
             value = float(n) / prefix[s]
             return '%.1f%s' % (value, s)
     return "%sB" % n
+   
 
-ddef get_file():
+def Datos_MapDisk_Archivo():
     total_bT = 0
     total_numT = 0
     patternT = ["*.dic", "*.doc", "*.diz", "*.dochtml", "*.exc", "*.idx", "*.log", "*.pdf", "*.rtf", "*.scp", "*.txt",
@@ -184,20 +187,11 @@ ddef get_file():
     total_bHAP=bytes2human(total_bAP)
     total_bHV=bytes2human(total_bV)
 
-    grafica(total_bT,total_bC,total_bA,total_bI,total_bAP,total_bV,total_bHT,total_bHC,total_bHA,total_bHI,total_bHAP,total_bHV)
-
-def Datos_MapDisk_Archivo():
-    
-    get_file()
-    
-def graficaArchivos(total_bT, total_bC, total_bA, total_bI, total_bAP, total_bV, total_bHT, total_bHC, total_bHA, total_bHI,total_bHAP, total_bHV):
-
-        Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)
-        tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
-        colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink','lightseagreen']
-        plt.pie(tamano, labels=Nombres, colors=colores, startangle=90)
-        plt.axis('equal')
-        plt.show()
+    Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)     tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
+    colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink','lightseagreen']
+    plt.pie(tamano, labels=Nombres, colors=colores, startangle=90)
+    plt.axis('equal')
+    plt.show()
         
 def Datos_MapDisk_Carpeta():
     
@@ -209,6 +203,30 @@ def Datos_MapDisk_Carpeta():
     for i in content_list:
         size_list.append(bytes2human(get_size(i)))
         print(i, bytes2human(get_size(i)))
+
+def cortar(content_list):
+        lista=[]
+        for i in content_list:
+                lista.append(i.rsplit('/'))
+        grafica_carpetas(lista)
+        
+def grafica_carpetas(lista):
+
+        N = len(lista)
+        theta = np.linspace((6.2795 / N), 2 * np.pi, N, endpoint=False)
+        radii = 10 * np.random.rand(N)
+        width = (6.2795 / N)
+        # 6.2795 = 360 grados
+        ax = plt.subplot(111, projection='polar')
+        bars = ax.bar(theta, radii, width=width, bottom=0.0)
+
+        # Use custom colors and opacity
+        for r, bar in zip(radii, bars):
+                bar.set_facecolor(plt.cm.jet(r / 10.))
+                # bar.set_alpha(0.5)
+        plt.axis('off')
+        plt.show()
+        
     
 def Guardando():
     
@@ -246,6 +264,10 @@ widthw = 600 - 200
 tree = ttk.Treeview()
 tree2 = ttk.Treeview()
 tree3 = ttk.Treeview()
+#Pestanas para el MapDisk
+MDA=ttk.Frame()
+MDC=ttk.Frame()
+
 popup = Menu(v0, tearoff = 0)
 popup.add_command(label = "End task")
 popup.add_command(label = "Sort", command = something)
@@ -280,6 +302,9 @@ tree.bind("<Button-1>", OnDoubleCLick)
 notebook.add(tree, text = 'Procesos')
 notebook.add(tree2, text = 'CPU')
 notebook.add(tree3, text = 'Mem')
+#agregar las pestanas del mapdisk a la ventana
+notebook.add(MDA, text='MapDisk de Archivos')
+notebook.add(MDC, text='MapDisk de Carpetas')
 v0.mainloop()
 #import matplotlib.pyplot as plt
 #plt.ion()
