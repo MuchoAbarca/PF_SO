@@ -10,7 +10,7 @@ from logging import handler
 from fnmatch import fnmatch
 from multiprocessing import Process
 
-root = '/home'
+root = '/'
 pattern = []
 
 def start():
@@ -190,94 +190,15 @@ def Datos_MapDisk_Archivo():
     
     get_file()
     
-def grafica(total_bT,total_bC,total_bA,total_bI,total_bAP,total_bV,total_bHT,total_bHC,total_bHA,total_bHI,total_bHAP,total_bHV):
-    py.sign_in('username', 'api_key')
-    trace1 = Bar(
-        x=[20],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(129, 216, 208, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Apps',
-        orientation='h'
-    )
-    trace2 = Bar(
-        x=[10],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(217, 130, 139, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Photos',
-        orientation='h'
-    )
-    trace3 = Bar(
-        x=[25],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(200, 162, 200, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Audio',
-        orientation='h'
-    )
-    trace4 = Bar(
-        x=[30],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(128, 140, 255, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Movies',
-        orientation='h'
-    )
-    trace5 = Bar(
-        x=[5],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(255, 243, 128, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Other',
-        orientation='h'
-    )
-    trace6 = Bar(
-        x=[5],
-        y=['Data'],
-        marker=Marker(
-            color='rgba(255, 255, 255, 0.6)',
-            line=Line(
-                color='rgba(color, 1.0)',
-                width=2
-            )
-        ),
-        name='Available',
-        orientation='h'
-    )
-    data = Data([trace1, trace2, trace3, trace4, trace5, trace6])
-    layout = Layout(
-        barmode='stack'
-    )
-    fig = Figure(data=data, layout=layout)
-    py.plot(fig)
+def graficaArchivos(total_bT, total_bC, total_bA, total_bI, total_bAP, total_bV, total_bHT, total_bHC, total_bHA, total_bHI,total_bHAP, total_bHV):
 
-    
+        Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)
+        tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
+        colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink','lightseagreen']
+        plt.pie(tamano, labels=Nombres, colors=colores, startangle=90)
+        plt.axis('equal')
+        plt.show()
+        
 def Datos_MapDisk_Carpeta():
     
     rootDir = '/home'
