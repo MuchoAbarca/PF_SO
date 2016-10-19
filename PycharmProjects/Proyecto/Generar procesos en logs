@@ -1,0 +1,21 @@
+import os 
+import threading 
+
+
+def guarda_procesos():
+    os.system("ps axo 'User: %u | "
+              "Process: %c | "
+              "CPU_Percentage: %C | "
+              "VirtualMemory: %z | "
+              "Tiempo: %x' --sort -vsize >> Logging.log")
+
+
+def Logger():
+    while True:
+        guarda_procesos()
+
+
+
+t = threading.Thread(target=Logger)
+t.setDaemon(True)
+t.start()
