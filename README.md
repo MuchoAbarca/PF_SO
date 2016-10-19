@@ -32,9 +32,7 @@ Ricardo Abarca Zamora       - MuchoAbarca
 7.  Minimo 10 GB de logs.
 ```
 ##Algunas consideraciones adicionales
-El proyecto hace uso de la libreria de Python para graficas conocida como Plotly para ello se requieren algunos pasos previos, notablemente el instalar el paquete de plotly. Entonces en la terminal se ingresa lo siguiente
-$sudo pip install plotly
-(Notese el uso del administrador de paquetes pip, por lo que una descarga de este puede ser necesario)
+El proyecto hace uso de la libreria de Python para graficas conocida como Matplotlib, para obtenerlo se debe tener disponible esta libreria, en caso de no tenerla, en termial ingresar sudo apt-get install python-numpy
 
 Adicionalmente, se usade de Tkinter que es una interfaz con el toolkit para GUI tk, mismo que viene incluido con la distribución de Python. Para usar Tkinter se debe de realizar una instalación, que se logra mediante el siguiente comando en terminal
 sudo apt-get install python-tk
