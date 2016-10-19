@@ -299,6 +299,20 @@ def Guardando():
     log.addHandler(log_handler)
     log.info(os.system("ps aux > Process_Log.log"))
 
+def OnDoubleCLick(event):
+    print ('its something')
+    do_popup(event)
+
+def do_popup(event):
+    try:
+        popup.tk_popup(event.x_root, event.y_root,0)
+    finally:
+        popup.grab_release()
+def something():
+    print('This is something')
+def Cancel():
+    print ('Nothing')
+    
 v0 = Tk()
 v0.config(bg = "white")
 v0.title("Task Monitor")
