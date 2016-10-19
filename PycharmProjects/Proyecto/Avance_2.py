@@ -26,31 +26,32 @@ def start():
      \nS) Salir\n')
 
     Accion = raw_input()
-    if(str(Accion).upper() == 'A'):
+    if str(Accion).upper() == 'A':
         Lista_Procesos()
         start()
-    if(str(Accion).upper() == 'B'):
+    if str(Accion).upper() == 'B':
         print ('C r e a n d o  P r o c e s o')
         sleep(0.5)
         process_maker()
         start()
-    if (str(Accion).upper() == 'C'):
+    if str(Accion).upper() == 'C':
         print ('M a t a n d o  P r o c e s o')
         sleep(0.5)
         process_killer()
         start()
-    if(str(Accion).upper() == 'D'):
+    if str(Accion).upper() == 'D':
         print ('\nG u a r d a n d o  P r o c e s o')
         sleep(0.5)
         Guardando()
         start()
-    if(str(Accion).upper() == 'E'):
+    if str(Accion).upper() == 'E':
         Datos_MapDisk()
         start()
-    if (str(Accion).upper() == 'S'):
+    if str(Accion).upper() == 'S':
         print ('\nC e r r a n d o')
         sleep(0.3)
         quit()
+        
         
 def child():
     
@@ -65,6 +66,7 @@ def process_maker():
         if newpid == 0:
             child()
 
+            
 def process_killer():
     
     print('Escriba PID')
@@ -72,15 +74,19 @@ def process_killer():
     os.kill(process_id, 0)
     print ('Matamos el proceso: ' + str(process_id))
     
+    
 def Datos_MapDisk():
     
-     print('Gusta ordenarlo por...\n \tA) Tipo de Archivo\n \tB) Carpetas')
-    X = raw_input()
-    if(str(X).upper() == 'A'):
+     print('Gusta ordenarlo por...\n '
+           '\tA) Tipo de Archivo\n '
+           '\tB) Carpetas')
+        
+    x = raw_input()
+    if str(x).upper() == 'A':
         print ('M o s t r a n d o  D i s c o')
         sleep(0.5)
         Datos_MapDisk_Archivo()
-    if (str(X).upper() == 'B'):
+    if str(x).upper() == 'B':
         print ('M o s t r a n d o  D i s c o')
         sleep(0.5)
         Datos_MapDisk_Carpeta()
@@ -88,12 +94,16 @@ def Datos_MapDisk():
         
 def Lista_Procesos():
     
-    print('Gusta ordenarlo por...\n \tA) CPU\n \tB) Memoria')
-    X = raw_input()
-    if(str(X).upper() == 'A'):
+    print('Gusta ordenarlo por...\n '
+          '\tA) CPU\n '
+          '\tB) Memoria')
+    
+    y = raw_input()
+    if str(y).upper() == 'A':
         os.system('ps -e -o pcpu,cpu,cputime,args --sort pcpu ')
-    if (str(X).upper() == 'B'):
+    if str(y).upper() == 'B':
         os.system('ps aux --width 30 --sort -rss')
+        
         
 def get_size(the_path):
     
@@ -105,6 +115,7 @@ def get_size(the_path):
             path_size += os.lstat(os.path.join(path, directory)).st_size
     path_size += os.path.getsize(the_path)
     return path_size
+
 
 def bytes2human(n):
     symbols = ('K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y')
@@ -123,22 +134,26 @@ def Datos_MapDisk_Archivo():
     total_numT = 0
     patternT = ["*.dic", "*.doc", "*.diz", "*.dochtml", "*.exc", "*.idx", "*.log", "*.pdf", "*.rtf", "*.scp", "*.txt",
                "*.wri", "*.wtx"]
+    
     total_bC = 0
     total_numC = 0
     patternC = ["*.ace", "*.arj", "*.bz", "*.bz2", "*.cab", "*.gz", "*.ha", "*.iso", "*.lha", "*.lzh", "*.r00", "*.r01",
                "*.r02", "*.r03", "*.r0", "*.rar", "*.tar", "*.tbz", "*.tbz2", "*.tgz", "*.uu", "*.uue", "*.xxe",
                "*.zip", "*.zoo"]
+    
     total_bV = 0
     total_numV = 0
     patternV = ["*.asf", "*.avi", "*.bik", "*.div", "*.divx", "*.dvd", "*.ivf", "*.m1v", "*.mov", "*.movie", "*.mp2v",
                "*.mp4", "*.mpa", "*.mpe", "*.mpeg", "*.mpg", "*.mpv2", "*.qt", "*.qtl", "*.rpm", "*.smk", "*.wm",
                "*.wmv", "*.wob"]
+    
     total_bA = 0
     total_numA = 0
     patternA = ["*.669", "*.aif", "*.aifc", "*.aiff", "*.amf", "*.asf", "*.au", "*.audiocd", "*.cda", "*.cdda", "*.far",
                "*.it", "*.itz", "*.lwv", "*.mid", "*.midi", "*.mp1", "*.mp2", "*.mp3", "*.mtm", "*.ogg", "*.ogm",
                "*.okt", "*.ra", "*.rmi", "*.snd", "*.stm", "*.stz", "*.ult", "*.voc", "*.wav", "*.wax", "*.wm", "*.wma",
                "*.wmv", "*.xm", "*.xmz"]
+    
     total_bI = 0
     total_numI = 0
     patternI = ["*.ais", "*.bmp", "*.bw", "*.cdr", "*.cdt", "*.cgm", "*.cmx", "*.cpt", "*.dcx", "*.dib", "*.emf",
@@ -146,13 +161,14 @@ def Datos_MapDisk_Archivo():
                "*.kdc", "*.lbm", "*.mac", "*.pat", "*.pcd", "*.pct", "*.pcx", "*.pic", "*.pict", "*.png", "*.pntg",
                "*.pix", "*.psd", "*.psp", "*.qti", "*.qtif", "*.rgb", "*.rgba", "*.rif", "*.rle", "*.sgi", "*.tga",
                "*.tif", "*.tiff", "*.wmf", "*.xcf"]
+    
     total_bAP = 0
     total_numAP = 0
     patternAP = [".action", ".apk", ".app", ".bat", ".bin", ".cmd", ".com", ".command", ".cpl", ".csh", ".exe",
            ".gadget", ".inf", ".ins", ".inx", ".ipa", ".isu", ".job", ".jse", ".ksh", ".lnk", ".msc",
            ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
            ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
-
+    
     for path, subdirs, files in os.walk(root):
         for name in files:
             for a in patternT:
@@ -187,11 +203,13 @@ def Datos_MapDisk_Archivo():
     total_bHAP=bytes2human(total_bAP)
     total_bHV=bytes2human(total_bV)
 
-    Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)     tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
+    Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)     
+    tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
     colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink','lightseagreen']
     plt.pie(tamano, labels=Nombres, colors=colores, startangle=90)
     plt.axis('equal')
     plt.show()
+        
         
 def Datos_MapDisk_Carpeta():
     
@@ -204,11 +222,13 @@ def Datos_MapDisk_Carpeta():
         size_list.append(bytes2human(get_size(i)))
         print(i, bytes2human(get_size(i)))
 
+        
 def cortar(content_list):
         lista=[]
         for i in content_list:
                 lista.append(i.rsplit('/'))
         grafica_carpetas(lista)
+        
         
 def grafica_carpetas(lista):
 
@@ -228,29 +248,34 @@ def grafica_carpetas(lista):
         plt.show()
         
     
-def Guardando():
-    
-    os.system("ps aux > Process_Log.log")
-    print ("Se lista de procesos se ha guardado")
-    log_handler = logging.handlers.RotatingFileHandler('Process_Log.log', maxBytes=200000000, backupCount=51)
-    log = logging.getLogger()
-    log.setLevel(logging.INFO)
-    log.addHandler(log_handler)
-    log.info(os.system("ps aux > Process_Log.log"))
+def guarda_procesos():
+    os.system("ps axo 'User: %u | "
+              "Process: %c | "
+              "CPU_Percentage: %C | "
+              "VirtualMemory: %z | "
+              "Tiempo: %x' --sort -vsize >> Procesos.log")
+
 
 def OnDoubleCLick(event):
     print ('its something')
     do_popup(event)
 
+    
 def do_popup(event):
     try:
         popup.tk_popup(event.x_root, event.y_root,0)
     finally:
         popup.grab_release()
+        
+        
 def something():
     print('This is something')
+    
+    
 def Cancel():
     print ('Nothing')
+    
+    
 def TabChange(event):
     print (notebook.select())
     print (notebook.index(notebook.select()))
