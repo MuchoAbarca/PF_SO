@@ -308,6 +308,15 @@ def TabChange(event):
         print('Case 5')
     else:
         sys.exit(0)
+def TaskEnder():
+    print ('Delete')
+    tree.delete('I001')
+def SortPID():
+    process_ids.sort()
+def Sortmem():
+    process_mem.sort()
+def SortCPU():
+    process_cpu.sort()     
     
 v0 = Tk()
 v0.config(bg = "white")
@@ -315,9 +324,21 @@ v0.title("Task Monitor")
 v0.geometry("800x500")
 v0.update()
 notebook = ttk.Notebook()
-#notebook.pack(fill = BOTH, expand = YES)
-notebook.pack()
+notebook.pack(fill = BOTH, expand = YES)
+#notebook.pack()
 widthw = 600 - 200
+process_names = [proc.name() for proc in psutil.process_iter()]
+process_ids = [proc.pid for proc in psutil.process_iter()]
+process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
+process_mem = [proc.memory_percent() for  proc in psutil.process_iter()]
+process_status = []
+process_user = [proc.username() for  proc in psutil.process_iter()]
+num2 =0
+for index in enumerate(process_ids):
+    p = psutil.Process(process_ids[num2])
+    process_status.append(p.status())
+    num2 += 1
+
 tree = ttk.Treeview()
 tree2 = ttk.Treeview()
 tree3 = ttk.Treeview()
@@ -327,11 +348,13 @@ MDC=ttk.Frame()
 EXIT=ttk.Frame()
 
 popup = Menu(v0, tearoff = 0)
-popup.add_command(label = "End task")
-popup.add_command(label = "Sort", command = something)
+popup.add_command(label = "End task", command = TaskEnder)
+#popup.add_command(label = "Sort", command = something)
+#popup.add_command(label = "Sort")
 sort_submenu = Menu(popup)
-sort_submenu.add_command(label = "By User")
-sort_submenu.add_command(label = "By CPU")
+sort_submenu.add_command(label = "By PID", command = SortPID)
+sort_submenu.add_command(label = "By CPU", command = SortCPU)
+sort_submenu.add_command(label = "By mem", command = Sortmem)
 popup.add_cascade(label = "Sort", menu = sort_submenu)
 popup.add_separator()
 popup.add_command(label = "Quit", command = Cancel)
@@ -352,10 +375,15 @@ xsb = ttk.Scrollbar(orient = HORIZONTAL, command = tree.xview())
 tree['yscroll'] = ysb.set
 tree['xscroll'] = xsb.set
 #tree.insert('',0, 'gallery', text = 'Applications')
-tree.insert("", 0, text = "Applications", values=("0%", "145.6 MB", "0 MB/s", "O Mbps"))
-tree.insert("", 0, text = "Applications", values=("0%", "145.6 MB", "0 MB/s", "O Mbps"))
-#tree.pack(fill = BOTH,expand = YES)
-tree.pack()
+#tree.insert("", 0, text = "Applications", values=("0%", "145.6 MB", "0 MB/s", "O Mbps"))
+#tree.insert("", 0, text = "Applications", values=("0%", "145.6 MB", "0 MB/s", "O Mbps"))
+num = 0
+for index in enumerate(process_mem):
+    tree.insert("", 0, text=process_names[num], values=(process_user[num],process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
+    num += 1
+
+tree.pack(fill = BOTH,expand = YES)
+#tree.pack()
 tree.bind("<Button-1>", OnDoubleCLick)
 notebook.add(tree, text = 'Procesos')
 notebook.add(tree2, text = 'CPU')
