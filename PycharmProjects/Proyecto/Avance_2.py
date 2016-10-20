@@ -169,28 +169,39 @@ def Datos_MapDisk_Archivo():
            ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
            ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
     
-    for path, subdirs, files in os.walk(root):
+    rootA = '/home'
+    for path, subdirs, files in os.walk(rootA):
         for name in files:
             for a in patternT:
                 if fnmatch(name, a):
                     total_bT += (get_size(os.path.join(path, name)))
                     total_numT += 1
+    for path, subdirs, files in os.walk(rootA):
+        for name in files:
             for a in patternC:
                 if fnmatch(name, a):
                     total_bC += (get_size(os.path.join(path, name)))
                     total_numC += 1
+    for path, subdirs, files in os.walk(rootA):
+        for name in files:
             for a in patternA:
                 if fnmatch(name, a):
                     total_bA += (get_size(os.path.join(path, name)))
                     total_numA += 1
+    for path, subdirs, files in os.walk(rootA):
+        for name in files:
             for a in patternI:
                 if fnmatch(name, a):
                     total_bI += (get_size(os.path.join(path, name)))
                     total_numI += 1
+    for path, subdirs, files in os.walk(rootA):
+        for name in files:
             for a in patternAP:
                 if fnmatch(name, a):
                     total_bAP += (get_size(os.path.join(path, name)))
                     total_numAP += 1
+    for path, subdirs, files in os.walk(rootA):
+        for name in files:
             for a in patternV:
                 if fnmatch(name, a):
                     total_bV += (get_size(os.path.join(path, name)))
@@ -220,8 +231,8 @@ def Datos_MapDisk_Carpeta():
     size_list = []
     for i in content_list:
         size_list.append(bytes2human(get_size(i)))
-        print(i, bytes2human(get_size(i)))
-
+       # print(i, bytes2human(get_size(i)))
+    cortar(content_list)
         
 def cortar(content_list):
         lista=[]
@@ -290,10 +301,12 @@ def TabChange(event):
         print ('Case 3')
         #d = DynamicUpdate()
         #d()
-    elif(notebook.index(notebook.select()) == 3):
-        print('Case 4')
+    elif (notebook.index(notebook.select()) == 3):
+        Datos_MapDisk_Archivo()
+        #print('Case 4')
     else:
-        print('Case 5')
+        Datos_MapDisk_Carpeta()
+        #print('Case 5')
     
 v0 = Tk()
 v0.config(bg = "white")
