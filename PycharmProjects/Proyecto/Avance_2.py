@@ -6,7 +6,7 @@ from time import sleep
 from fnmatch import fnmatch
 import numpy as np
 import matplotlib.pyplot as plt
-
+import psutil
 
 
 root = '/'
@@ -203,7 +203,7 @@ def Datos_MapDisk_Archivo():
                 if fnmatch(name, a):
                     total_bV += (get_size(os.path.join(path, name)))
                     total_numV += 1
-    total_bFree=1000000
+    total_bFree=psutil.virtual_memory().free
     total_bHFree=bytes2human(total_bFree)                
     total_bHT=bytes2human(total_bT)
     total_bHC=bytes2human(total_bC)
