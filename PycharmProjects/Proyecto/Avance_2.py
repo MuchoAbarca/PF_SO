@@ -406,3 +406,40 @@ class GrafProcesador():
 
 x = GrafProcesador()
 x()
+
+#Grafica de uso de memoria 
+plt.ion()
+class GrafMemoria():
+    minimo = 0
+    maximo = 10
+
+    def Dibujar(self):
+        self.figura, self.ax = plt.subplots()
+        self.lineas, = self.ax.plot([],[], 'o')
+        self.ax.set_autoscaley_on(True)
+        self.ax.set_xlim(self.minimo, self.maximo)
+        self.ax.grid()
+
+
+    def Corriendo(self, xdata, ydata):
+        self.lineas.set_xdata(xdata)
+        self.lineas.set_ydata(ydata)
+        self.ax.relim()
+        self.ax.autoscale_view()
+        self.figura.canvas.draw()
+        self.figura.canvas.flush_events()
+
+    def __call__(self):
+        self.Dibujar()
+        xdata = []
+        ydata = []
+        for x in np.arange(0,100,0.5):
+            ydat= psutil.virtual_memory().percent
+            xdata.append(x)
+            ydata.append(ydat)
+            self.Corriendo(xdata, ydata)
+            time.sleep(1)
+        return xdata, ydata
+
+y = GrafMemoria()
+y()
