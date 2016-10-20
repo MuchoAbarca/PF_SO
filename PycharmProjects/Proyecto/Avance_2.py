@@ -1,6 +1,6 @@
 import os
 import ttk
-import threading
+import time
 from Tkinter import *
 from time import sleep
 from fnmatch import fnmatch
