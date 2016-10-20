@@ -208,7 +208,8 @@ def Datos_MapDisk_Archivo():
                 if fnmatch(name, a):
                     total_bV += (get_size(os.path.join(path, name)))
                     total_numV += 1
-                    
+    total_bFree=1000000
+    total_bHFree=bytes2human(total_bFree)                
     total_bHT=bytes2human(total_bT)
     total_bHC=bytes2human(total_bC)
     total_bHA=bytes2human(total_bA)
@@ -216,9 +217,11 @@ def Datos_MapDisk_Archivo():
     total_bHAP=bytes2human(total_bAP)
     total_bHV=bytes2human(total_bV)
 
-    Nombres =  'Aplicaciones '+str(total_bHAP), 'Audio '+str(total_bHA), 'Video '+str(total_bHV), 'Comprimido '+str(total_bHC), 'Texto '+str(total_bHT), 'Imagenes '+str(total_bHI)     
-    tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI]
-    colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink','lightseagreen']
+    Nombres = ['Aplicaciones ' + str(total_bHAP), 'Audio ' + str(total_bHA), 'Video ' + str(total_bHV), 
+               'Comprimido ' + str(total_bHC), 'Texto ' + str(total_bHT), 'Imagenes ' + str(total_bHI), 
+               'Libre '+str(total_bHFree)]
+    tamano = [total_bAP, total_bA, total_bV, total_bC, total_bT, total_bI,total_bFree]
+    colores = ['salmon', 'mediumturquoise', 'mediumpurple', 'yellowgreen', 'pink', 'lightseagreen','lightgray']
     plt.pie(tamano, labels=Nombres, colors=colores, startangle=90)
     plt.axis('equal')
     plt.show()
