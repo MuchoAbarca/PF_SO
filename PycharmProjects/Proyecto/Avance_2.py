@@ -1,17 +1,12 @@
 import os
-import logging
-import plotly.plotly as py
-from Tkinter import *
 import ttk
-from os import system
-from plotly.graph_objs import *
-from logging import handler
+import threading
+from Tkinter import *
+from time import sleep
 from fnmatch import fnmatch
-from multiprocessing import Process
 import numpy as np
 import matplotlib.pyplot as plt
-import psutil
-import time
+
 
 
 root = '/'
