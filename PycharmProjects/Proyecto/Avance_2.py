@@ -8,10 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import psutil
 
-
 root = '/'
 pattern = []
-
 
 # Esto ya no se necesita considerando que hacemos todo en el GUI
 #
@@ -52,7 +50,6 @@ pattern = []
 #         sleep(0.3)
 #         quit()
         
-        
 def child():
     
     print('Hello from child', os.getpid())
@@ -80,7 +77,6 @@ def Datos_MapDisk():
      print('Gusta ordenarlo por...\n '
            '\tA) Tipo de Archivo\n '
            '\tB) Carpetas')
-        
     x = raw_input()
     if str(x).upper() == 'A':
         print ('M o s t r a n d o  D i s c o')
@@ -246,10 +242,10 @@ def cortar(content_list):
         
 def grafica_carpetas(lista):
 
-        N = len(lista)
-        theta = np.linspace((6.2795 / N), 2 * np.pi, N, endpoint=False)
-        radii = 10 * np.random.rand(N)
-        width = (6.2795 / N)
+        n = len(lista)
+        theta = np.linspace((6.2795 / n), 2 * np.pi, n, endpoint=False)
+        radii = 10 * np.random.rand(n)
+        width = (6.2795 / n)
         # 6.2795 = 360 grados
         ax = plt.subplot(111, projection='polar')
         bars = ax.bar(theta, radii, width=width, bottom=0.0)
@@ -293,21 +289,21 @@ def Cancel():
 def TabChange(event):
     print (notebook.select())
     print (notebook.index(notebook.select()))
-    if(notebook.index(notebook.select()) == 0):
+    if notebook.index(notebook.select()) == 0:
         print ('Case 1')
-    elif(notebook.index(notebook.select()) == 1):
+    elif notebook.index(notebook.select()) == 1:
         print ('Case 2')
         #Aqui es donde deberia ir la funcion para hacer la grafica
         #d = DynamicUpdate()
         #d()
-    elif(notebook.index(notebook.select()) == 2):
+    elif notebook.index(notebook.select()) == 2:
         print ('Case 3')
         #d = DynamicUpdate()
         #d()
-    elif (notebook.index(notebook.select()) == 3):
+    elif notebook.index(notebook.select()) == 3:
         Datos_MapDisk_Archivo()
         #print('Case 4')
-    elif (notebook.index(notebook.select()) == 4):
+    elif notebook.index(notebook.select()) == 4:
         Datos_MapDisk_Carpeta()
         print('Case 5')
     else:
