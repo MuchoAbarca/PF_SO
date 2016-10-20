@@ -12,42 +12,45 @@ import psutil
 root = '/'
 pattern = []
 
-def start():
-    
-    print ('Hola, soy tu task manager. Que te gustaria hacer?\n \
-     \nA) Obtener Una Lista De Tus Procesos                     \
-     \nB) Crear Un Proceso                                      \
-     \nC) Matar Un Proceso                                      \
-     \nD) Guardar Tus Procesos                                  \
-     \nE) Hacer Map Disk                                        \
-     \nS) Salir\n')
 
-    Accion = raw_input()
-    if str(Accion).upper() == 'A':
-        Lista_Procesos()
-        start()
-    if str(Accion).upper() == 'B':
-        print ('C r e a n d o  P r o c e s o')
-        sleep(0.5)
-        process_maker()
-        start()
-    if str(Accion).upper() == 'C':
-        print ('M a t a n d o  P r o c e s o')
-        sleep(0.5)
-        process_killer()
-        start()
-    if str(Accion).upper() == 'D':
-        print ('\nG u a r d a n d o  P r o c e s o')
-        sleep(0.5)
-        Guardando()
-        start()
-    if str(Accion).upper() == 'E':
-        Datos_MapDisk()
-        start()
-    if str(Accion).upper() == 'S':
-        print ('\nC e r r a n d o')
-        sleep(0.3)
-        quit()
+# Esto ya no se necesita considerando que hacemos todo en el GUI
+#
+# def start():
+    
+#     print ('Hola, soy tu task manager. Que te gustaria hacer?\n \
+#      \nA) Obtener Una Lista De Tus Procesos                     \
+#      \nB) Crear Un Proceso                                      \
+#      \nC) Matar Un Proceso                                      \
+#      \nD) Guardar Tus Procesos                                  \
+#      \nE) Hacer Map Disk                                        \
+#      \nS) Salir\n')
+
+#     Accion = raw_input()
+#     if str(Accion).upper() == 'A':
+#         Lista_Procesos()
+#         start()
+#     if str(Accion).upper() == 'B':
+#         print ('C r e a n d o  P r o c e s o')
+#         sleep(0.5)
+#         process_maker()
+#         start()
+#     if str(Accion).upper() == 'C':
+#         print ('M a t a n d o  P r o c e s o')
+#         sleep(0.5)
+#         process_killer()
+#         start()
+#     if str(Accion).upper() == 'D':
+#         print ('\nG u a r d a n d o  P r o c e s o')
+#         sleep(0.5)
+#         Guardando()
+#         start()
+#     if str(Accion).upper() == 'E':
+#         Datos_MapDisk()
+#         start()
+#     if str(Accion).upper() == 'S':
+#         print ('\nC e r r a n d o')
+#         sleep(0.3)
+#         quit()
         
         
 def child():
@@ -130,41 +133,41 @@ def Datos_MapDisk_Archivo():
     total_bT = 0
     total_numT = 0
     patternT = ["*.dic", "*.doc", "*.diz", "*.dochtml", "*.exc", "*.idx", "*.log", "*.pdf", "*.rtf", "*.scp", "*.txt",
-               "*.wri", "*.wtx"]
+                "*.wri", "*.wtx"]
     
     total_bC = 0
     total_numC = 0
     patternC = ["*.ace", "*.arj", "*.bz", "*.bz2", "*.cab", "*.gz", "*.ha", "*.iso", "*.lha", "*.lzh", "*.r00", "*.r01",
-               "*.r02", "*.r03", "*.r0", "*.rar", "*.tar", "*.tbz", "*.tbz2", "*.tgz", "*.uu", "*.uue", "*.xxe",
-               "*.zip", "*.zoo"]
+                "*.r02", "*.r03", "*.r0", "*.rar", "*.tar", "*.tbz", "*.tbz2", "*.tgz", "*.uu", "*.uue", "*.xxe",
+                "*.zip", "*.zoo"]
     
     total_bV = 0
     total_numV = 0
     patternV = ["*.asf", "*.avi", "*.bik", "*.div", "*.divx", "*.dvd", "*.ivf", "*.m1v", "*.mov", "*.movie", "*.mp2v",
-               "*.mp4", "*.mpa", "*.mpe", "*.mpeg", "*.mpg", "*.mpv2", "*.qt", "*.qtl", "*.rpm", "*.smk", "*.wm",
-               "*.wmv", "*.wob"]
+                "*.mp4", "*.mpa", "*.mpe", "*.mpeg", "*.mpg", "*.mpv2", "*.qt", "*.qtl", "*.rpm", "*.smk", "*.wm",
+                "*.wmv", "*.wob"]
     
     total_bA = 0
     total_numA = 0
     patternA = ["*.669", "*.aif", "*.aifc", "*.aiff", "*.amf", "*.asf", "*.au", "*.audiocd", "*.cda", "*.cdda", "*.far",
-               "*.it", "*.itz", "*.lwv", "*.mid", "*.midi", "*.mp1", "*.mp2", "*.mp3", "*.mtm", "*.ogg", "*.ogm",
-               "*.okt", "*.ra", "*.rmi", "*.snd", "*.stm", "*.stz", "*.ult", "*.voc", "*.wav", "*.wax", "*.wm", "*.wma",
-               "*.wmv", "*.xm", "*.xmz"]
+                "*.it", "*.itz", "*.lwv", "*.mid", "*.midi", "*.mp1", "*.mp2", "*.mp3", "*.mtm", "*.ogg", "*.ogm",
+                "*.okt", "*.ra", "*.rmi", "*.snd", "*.stm", "*.stz", "*.ult", "*.voc", "*.wav", "*.wax", "*.wm", "*.wma",
+                "*.wmv", "*.xm", "*.xmz"]
     
     total_bI = 0
     total_numI = 0
     patternI = ["*.ais", "*.bmp", "*.bw", "*.cdr", "*.cdt", "*.cgm", "*.cmx", "*.cpt", "*.dcx", "*.dib", "*.emf",
-               "*.gbr", "*.gif", "*.gih", "*.ico", "*.iff", "*.ilbm", "*.jfif", "*.jif", "*.jpe", "*.jpeg", "*.jpg",
-               "*.kdc", "*.lbm", "*.mac", "*.pat", "*.pcd", "*.pct", "*.pcx", "*.pic", "*.pict", "*.png", "*.pntg",
-               "*.pix", "*.psd", "*.psp", "*.qti", "*.qtif", "*.rgb", "*.rgba", "*.rif", "*.rle", "*.sgi", "*.tga",
-               "*.tif", "*.tiff", "*.wmf", "*.xcf"]
+                "*.gbr", "*.gif", "*.gih", "*.ico", "*.iff", "*.ilbm", "*.jfif", "*.jif", "*.jpe", "*.jpeg", "*.jpg",
+                "*.kdc", "*.lbm", "*.mac", "*.pat", "*.pcd", "*.pct", "*.pcx", "*.pic", "*.pict", "*.png", "*.pntg",
+                "*.pix", "*.psd", "*.psp", "*.qti", "*.qtif", "*.rgb", "*.rgba", "*.rif", "*.rle", "*.sgi", "*.tga",
+                "*.tif", "*.tiff", "*.wmf", "*.xcf"]
     
     total_bAP = 0
     total_numAP = 0
     patternAP = [".action", ".apk", ".app", ".bat", ".bin", ".cmd", ".com", ".command", ".cpl", ".csh", ".exe",
-           ".gadget", ".inf", ".ins", ".inx", ".ipa", ".isu", ".job", ".jse", ".ksh", ".lnk", ".msc",
-           ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
-           ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
+                 ".gadget", ".inf", ".ins", ".inx", ".ipa", ".isu", ".job", ".jse", ".ksh", ".lnk", ".msc",
+                 ".msi", ".msp", ".mst", ".osx", ".out", ".paf", ".pif", ".prg", ".ps1", ".reg", "rgs", ".run",
+                 ".scr", ".sct", ".shb", ".shs", ".u3p", ".vb", ".vbe", ".widget", ".wiz"]
     
     rootA = '/home'
     for path, subdirs, files in os.walk(rootA):
@@ -231,7 +234,7 @@ def Datos_MapDisk_Carpeta():
     size_list = []
     for i in content_list:
         size_list.append(bytes2human(get_size(i)))
-       # print(i, bytes2human(get_size(i)))
+        # print(i, bytes2human(get_size(i)))
     cortar(content_list)
         
 def cortar(content_list):
@@ -266,7 +269,7 @@ def guarda_procesos():
               "VirtualMemory: %z | "
               "Tiempo: %x' --sort -vsize >> Procesos.log")
 
-
+    
 def OnDoubleCLick(event):
     print ('its something')
     do_popup(event)
