@@ -304,9 +304,11 @@ def TabChange(event):
     elif (notebook.index(notebook.select()) == 3):
         Datos_MapDisk_Archivo()
         #print('Case 4')
-    else:
+    elif (notebook.index(notebook.select()) == 4):
         Datos_MapDisk_Carpeta()
-        #print('Case 5')
+        print('Case 5')
+    else:
+        sys.exit(0)
     
 v0 = Tk()
 v0.config(bg = "white")
@@ -323,6 +325,7 @@ tree3 = ttk.Treeview()
 #Pestanas para el MapDisk
 MDA=ttk.Frame()
 MDC=ttk.Frame()
+EXIT=ttk.Frame()
 
 popup = Menu(v0, tearoff = 0)
 popup.add_command(label = "End task")
@@ -361,6 +364,8 @@ notebook.add(tree3, text = 'Mem')
 #agregar las pestanas del mapdisk a la ventana
 notebook.add(MDA, text='MapDisk de Archivos')
 notebook.add(MDC, text='MapDisk de Carpetas')
+
+notebook.add(EXIT, text='Salir')
 #Detectar el cambio de tab
 notebook.bind("<ButtonRelease-1>", TabChange)
 v0.mainloop()
