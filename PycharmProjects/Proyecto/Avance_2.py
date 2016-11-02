@@ -50,14 +50,14 @@ pattern = []
 #         sleep(0.3)
 #         quit()
 class GrafProcesador():
-    minimo = 0
-    maximo = 10
+    #minimo = 0
+    #maximo = 10
 
     def Dibujar(self):
         self.figura, self.ax = plt.subplots()
         self.lineas, = self.ax.plot([],[], 'o')
         self.ax.set_autoscaley_on(True)
-        self.ax.set_xlim(self.minimo, self.maximo)
+        #self.ax.set_xlim(self.minimo, self.maximo)
         self.ax.grid()
 
 
@@ -82,14 +82,14 @@ class GrafProcesador():
         return xdata, ydata
 
 class GrafMemoria():
-    minimo = 0
-    maximo = 10
+    #minimo = 0
+    #maximo = 10
 
     def Dibujar(self):
         self.figura, self.ax = plt.subplots()
         self.lineas, = self.ax.plot([],[], 'o')
         self.ax.set_autoscaley_on(True)
-        self.ax.set_xlim(self.minimo, self.maximo)
+        #self.ax.set_xlim(self.minimo, self.maximo)
         self.ax.grid()
 
 
@@ -408,8 +408,8 @@ for index in enumerate(process_ids):
     num2 += 1
 
 tree = ttk.Treeview()
-tree2 = ttk.Treeview()
-tree3 = ttk.Treeview()
+CPUframe = ttk.Frame()
+Memframe = ttk.Frame()
 #Pestanas para el MapDisk
 MDA=ttk.Frame()
 MDC=ttk.Frame()
@@ -454,8 +454,8 @@ tree.pack(fill = BOTH,expand = YES)
 #tree.pack()
 tree.bind("<Button-1>", OnDoubleCLick)
 notebook.add(tree, text = 'Procesos')
-notebook.add(tree2, text = 'CPU')
-notebook.add(tree3, text = 'Mem')
+notebook.add(CPUframe, text='CPU')
+notebook.add(Memframe, text='Mem')
 #agregar las pestanas del mapdisk a la ventana
 notebook.add(MDA, text='MapDisk de Archivos')
 notebook.add(MDC, text='MapDisk de Carpetas')
