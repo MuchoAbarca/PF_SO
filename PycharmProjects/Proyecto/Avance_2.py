@@ -49,6 +49,69 @@ pattern = []
 #         print ('\nC e r r a n d o')
 #         sleep(0.3)
 #         quit()
+class GrafProcesador():
+    minimo = 0
+    maximo = 10
+
+    def Dibujar(self):
+        self.figura, self.ax = plt.subplots()
+        self.lineas, = self.ax.plot([],[], 'o')
+        self.ax.set_autoscaley_on(True)
+        self.ax.set_xlim(self.minimo, self.maximo)
+        self.ax.grid()
+
+
+    def Corriendo(self, xdata, ydata):
+        self.lineas.set_xdata(xdata)
+        self.lineas.set_ydata(ydata)
+        self.ax.relim()
+        self.ax.autoscale_view()
+        self.figura.canvas.draw()
+        self.figura.canvas.flush_events()
+
+    def __call__(self):
+        self.Dibujar()
+        xdata = []
+        ydata = []
+        for x in np.arange(0,100,0.5):
+            ydat= psutil.cpu_percent(interval=1, percpu=False)
+            xdata.append(x)
+            ydata.append(ydat)
+            self.Corriendo(xdata, ydata)
+            time.sleep(1)
+        return xdata, ydata
+
+class GrafMemoria():
+    minimo = 0
+    maximo = 10
+
+    def Dibujar(self):
+        self.figura, self.ax = plt.subplots()
+        self.lineas, = self.ax.plot([],[], 'o')
+        self.ax.set_autoscaley_on(True)
+        self.ax.set_xlim(self.minimo, self.maximo)
+        self.ax.grid()
+
+
+    def Corriendo(self, xdata, ydata):
+        self.lineas.set_xdata(xdata)
+        self.lineas.set_ydata(ydata)
+        self.ax.relim()
+        self.ax.autoscale_view()
+        self.figura.canvas.draw()
+        self.figura.canvas.flush_events()
+
+    def __call__(self):
+        self.Dibujar()
+        xdata = []
+        ydata = []
+        for x in np.arange(0,100,0.5):
+            ydat= psutil.virtual_memory().percent
+            xdata.append(x)
+            ydata.append(ydat)
+            self.Corriendo(xdata, ydata)
+            time.sleep(1)
+        return xdata, ydata
         
 def child():
     
@@ -293,13 +356,18 @@ def TabChange(event):
         print ('Case 1')
     elif notebook.index(notebook.select()) == 1:
         print ('Case 2')
-        #Aqui es donde deberia ir la funcion para hacer la grafica
-        #d = DynamicUpdate()
-        #d()
+        #Grafica procesador
+        plt.ion()
+        x = GrafProcesador()
+        x()
+
     elif notebook.index(notebook.select()) == 2:
         print ('Case 3')
-        #d = DynamicUpdate()
-        #d()
+        #Grafica memoria
+        plt.ion()
+        y = GrafMemoria()
+        y()
+
     elif notebook.index(notebook.select()) == 3:
         Datos_MapDisk_Archivo()
         #print('Case 4')
@@ -396,77 +464,3 @@ notebook.add(EXIT, text='Salir')
 #Detectar el cambio de tab
 notebook.bind("<ButtonRelease-1>", TabChange)
 v0.mainloop()
-
-#grafica de uso de procesador
-plt.ion()
-class GrafProcesador():
-    minimo = 0
-    maximo = 10
-
-    def Dibujar(self):
-        self.figura, self.ax = plt.subplots()
-        self.lineas, = self.ax.plot([],[], 'o')
-        self.ax.set_autoscaley_on(True)
-        self.ax.set_xlim(self.minimo, self.maximo)
-        self.ax.grid()
-
-
-    def Corriendo(self, xdata, ydata):
-        self.lineas.set_xdata(xdata)
-        self.lineas.set_ydata(ydata)
-        self.ax.relim()
-        self.ax.autoscale_view()
-        self.figura.canvas.draw()
-        self.figura.canvas.flush_events()
-
-    def __call__(self):
-        self.Dibujar()
-        xdata = []
-        ydata = []
-        for x in np.arange(0,100,0.5):
-            ydat= psutil.cpu_percent(interval=1, percpu=False)
-            xdata.append(x)
-            ydata.append(ydat)
-            self.Corriendo(xdata, ydata)
-            time.sleep(1)
-        return xdata, ydata
-
-x = GrafProcesador()
-x()
-
-#Grafica de uso de memoria 
-plt.ion()
-class GrafMemoria():
-    minimo = 0
-    maximo = 10
-
-    def Dibujar(self):
-        self.figura, self.ax = plt.subplots()
-        self.lineas, = self.ax.plot([],[], 'o')
-        self.ax.set_autoscaley_on(True)
-        self.ax.set_xlim(self.minimo, self.maximo)
-        self.ax.grid()
-
-
-    def Corriendo(self, xdata, ydata):
-        self.lineas.set_xdata(xdata)
-        self.lineas.set_ydata(ydata)
-        self.ax.relim()
-        self.ax.autoscale_view()
-        self.figura.canvas.draw()
-        self.figura.canvas.flush_events()
-
-    def __call__(self):
-        self.Dibujar()
-        xdata = []
-        ydata = []
-        for x in np.arange(0,100,0.5):
-            ydat= psutil.virtual_memory().percent
-            xdata.append(x)
-            ydata.append(ydat)
-            self.Corriendo(xdata, ydata)
-            time.sleep(1)
-        return xdata, ydata
-
-y = GrafMemoria()
-y()
