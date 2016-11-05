@@ -7,7 +7,7 @@ Katia Denisse Garcia Aviles - KatiaGarcia96
 Leslie De Anda Zavala       - leslie827
 Ricardo Abarca Zamora       - MuchoAbarca
 ```
-##Ya podemos...
+##Primera entrega
 
 ```
 1. Obtener la lista de procesos
@@ -31,11 +31,24 @@ Ricardo Abarca Zamora       - MuchoAbarca
 6.  Grafica "En Tiempo Real" de uso de memoria.
 7.  Minimo 10 GB de logs.
 ```
+##Lo que sigue para la entrega final
+
+```
+1. Real time charts about process, memory, disk usage and threads (A premium version of Task Manager, Activity Monitor etc.)
+2. Ability to create, kill or manage process and threads.
+3.Ability to identify and manage memory
+4.Ability to map the disk
+5.Ability to clean the memory
+6.Stats of application usage of memory, process, cpu, threads, etc.
+7.Recommendation engine for better performance (30 GB logs)
+```
 ##Algunas consideraciones adicionales
+```
 El proyecto hace uso de la libreria de Python para graficas conocida como Matplotlib, para obtenerlo se debe tener disponible esta libreria, en caso de no tenerla, en termial ingresar sudo apt-get install python-matplotlib, adicionalmente se reomienda descargar numpy, el que igualmente, en terminal es sudo apt-get install python-numpy.
 Se pueden combinar estas dos instrucciones escribine sudo apt-get install python-numpy python-matplotlib.
 
-Adicionalmente, se usade de Tkinter que es una interfaz con el toolkit para GUI tk, mismo que viene incluido con la distribución de Python. Para usar Tkinter se debe de realizar una instalación, que se logra mediante el siguiente comando en terminal
+Adicionalmente, se usa de Tkinter que es una interfaz con el toolkit para GUI tk, mismo que viene incluido con la distribución de Python. Para usar Tkinter se debe de realizar una instalación, que se logra mediante el siguiente comando en terminal
 sudo apt-get install python-tk
+```
 
 #Todo lo relevante al proyecto esta dentro de: PF_SO/PycharmProjects/Proyecto/
