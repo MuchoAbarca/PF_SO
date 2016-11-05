@@ -1,6 +1,7 @@
 import os
 import ttk
 import time
+import threading
 from Tkinter import *
 from time import sleep
 from fnmatch import fnmatch
@@ -55,7 +56,7 @@ class GrafProcesador():
 
     def Dibujar(self):
         self.figura, self.ax = plt.subplots()
-        self.lineas, = self.ax.plot([],[], 'o')
+        self.lineas, = self.ax.plot([],[])
         self.ax.set_autoscaley_on(True)
         #self.ax.set_xlim(self.minimo, self.maximo)
         self.ax.grid()
@@ -87,7 +88,7 @@ class GrafMemoria():
 
     def Dibujar(self):
         self.figura, self.ax = plt.subplots()
-        self.lineas, = self.ax.plot([],[], 'o')
+        self.lineas, = self.ax.plot([],[])
         self.ax.set_autoscaley_on(True)
         #self.ax.set_xlim(self.minimo, self.maximo)
         self.ax.grid()
@@ -379,13 +380,93 @@ def TabChange(event):
 def TaskEnder():
     print ('Delete')
     tree.delete('I001')
+
 def SortPID():
-    process_ids.sort()
-def Sortmem():
-    process_mem.sort()
-def SortCPU():
-    process_cpu.sort()     
+    process_names = [proc.name() for proc in psutil.process_iter()]
+    process_ids = [proc.pid for proc in psutil.process_iter()]
+    process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
+    process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
+    process_status = []
+    process_user = [proc.username() for proc in psutil.process_iter()]
+    num2 = 0
+    for index in enumerate(process_ids):
+        p = psutil.Process(process_ids[num2])
+        process_status.append(p.status())
+        num2 += 1
+    process_ids,process_cpu,process_mem,process_names,process_status,process_user = zip(*sorted(zip(process_ids,process_cpu,process_mem,process_names,process_status,process_user)))
+    tree.delete(*tree.get_children())
+    num = 0
+    for index in enumerate(process_mem):
+        tree.insert("", 0, text=process_names[num],
+                    values=(
+                        process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
+        num += 1
     
+def Sortmem():
+    process_names = [proc.name() for proc in psutil.process_iter()]
+    process_ids = [proc.pid for proc in psutil.process_iter()]
+    process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
+    process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
+    process_status = []
+    process_user = [proc.username() for proc in psutil.process_iter()]
+    num2 = 0
+    for index in enumerate(process_ids):
+        p = psutil.Process(process_ids[num2])
+        process_status.append(p.status())
+        num2 += 1
+    process_mem,process_ids,process_cpu,process_names,process_status,process_user = zip(*sorted(zip(process_mem,process_ids,process_cpu,process_names,process_status,process_user)))
+    tree.delete(*tree.get_children())
+    num = 0
+    for index in enumerate(process_mem):
+        tree.insert("", 0, text=process_names[num],
+                    values=(
+                        process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
+        num += 1
+
+
+def SortCPU():
+    process_names = [proc.name() for proc in psutil.process_iter()]
+    process_ids = [proc.pid for proc in psutil.process_iter()]
+    process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
+    process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
+    process_status = []
+    process_user = [proc.username() for proc in psutil.process_iter()]
+    num2 = 0
+    for index in enumerate(process_ids):
+        p = psutil.Process(process_ids[num2])
+        process_status.append(p.status())
+        num2 += 1
+    process_cpu, process_mem, process_ids,process_names,process_status,process_user = zip(*sorted(zip(process_cpu, process_mem, process_ids,process_names,process_status,process_user)))
+    tree.delete(*tree.get_children())
+    num = 0
+    for index in enumerate(process_mem):
+        tree.insert("", 0, text=process_names[num],
+                    values=(
+                        process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
+        num += 1
+
+def Refreshtree():
+    threading.Timer(60,Refreshtree).start()
+    print ('start')
+    tree.delete(*tree.get_children())
+    process_names = [proc.name() for proc in psutil.process_iter()]
+    process_ids = [proc.pid for proc in psutil.process_iter()]
+    process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
+    process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
+    process_status = []
+    process_user = [proc.username() for proc in psutil.process_iter()]
+    num2 = 0
+    for index in enumerate(process_ids):
+        p = psutil.Process(process_ids[num2])
+        process_status.append(p.status())
+        num2 += 1
+    num = 0
+    for index in enumerate(process_mem):
+        tree.insert("", 0, text=process_names[num],
+                    values=(
+                    process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
+        num += 1
+        
 v0 = Tk()
 v0.config(bg = "white")
 v0.title("Task Monitor")
