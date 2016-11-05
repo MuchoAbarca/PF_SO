@@ -46,7 +46,7 @@ Ricardo Abarca Zamora       - MuchoAbarca
 ```
 1.Tabla de proccesos en interfaz grafica
     -Refresh de la tabla de procesos (Realizado cada minuto)
-    -Sort de la tabla por columna (necesita unos arreglos para que las columnas correspondientes tambien se muevan)
+    -Sort de la tabla por columna
     -Capacidad de seleccionar un proceso de la tabla y matarlo (delete de la tabla pero parece haber problemas con la manera en que se le hace kill)
 La tabla de procesos por alguna razon no muestra la scroolbar para el tree view
 2.Grafica de distribucion de disco duro:
