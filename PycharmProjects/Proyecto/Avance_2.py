@@ -377,9 +377,26 @@ def TabChange(event):
         print('Case 5')
     else:
         sys.exit(0)
+        
 def TaskEnder():
     print ('Delete')
-    tree.delete('I001')
+    selected_item = tree.selection()[0]
+    print (selected_item)
+    curItem = tree.focus()
+    print  tree.item(curItem)
+    dic = tree.item(curItem)
+    print (dic['values'][2])
+    tree.delete(selected_item)
+    #print(os.kill(dic['values'][2],0))
+    print(int(dic['values'][2]) + 1)
+    os.kill(int(dic['values'][2]),0)
+    print('first os kill complete')
+    try:
+        os.kill(int(dic['values'][2]), 0)
+        raise Exception("""wasn't able to kill the process
+                              HINT:use signal.SIGKILL or signal.SIGABORT""")
+    except OSError as ex:
+        print('other error')
 
 def SortPID():
     process_names = [proc.name() for proc in psutil.process_iter()]
