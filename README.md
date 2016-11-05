@@ -42,6 +42,23 @@ Ricardo Abarca Zamora       - MuchoAbarca
 6.Stats of application usage of memory, process, cpu, threads, etc.
 7.Recommendation engine for better performance (30 GB logs)
 ```
+#Checklist (Logrado hasta el 5 de Noviembre del 2016)
+```
+1.Tabla de proccesos en interfaz grafica
+    -Refresh de la tabla de procesos (Realizado cada minuto)
+    -Sort de la tabla por columna (necesita unos arreglos para que las columnas correspondientes tambien se muevan)
+    -Capacidad de seleccionar un proceso de la tabla y matarlo (delete de la tabla pero parece haber problemas con la manera en que se le hace kill)
+La tabla de procesos por alguna razon no muestra la scroolbar para el tree view
+2.Grafica de distribucion de disco duro:
+    -Una por tipo de archivos
+    -Otra por folders (posibles modificaciones)
+3.Grafica "En tiempo real":
+    -Procesador
+    -Memoria
+Ambas salen en una ventana aparte asi que se puede considerar que eso ya no suceda
+4.Aproximadamente 10.3 GB de logs
+```
+
 ##Algunas consideraciones adicionales
 ```
 El proyecto hace uso de la libreria de Python para graficas conocida como Matplotlib, para obtenerlo se debe tener disponible esta libreria, en caso de no tenerla, en terminal ingresar sudo apt-get install python-matplotlib, adicionalmente se recomienda descargar numpy, el que igualmente, en terminal es sudo apt-get install python-numpy.
