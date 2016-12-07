@@ -404,11 +404,13 @@ def SortPID():
     process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
     process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
     process_status = []
+    process_thread = []
     process_user = [proc.username() for proc in psutil.process_iter()]
     num2 = 0
     for index in enumerate(process_ids):
         p = psutil.Process(process_ids[num2])
         process_status.append(p.status())
+        process_thread.append(p.num_threads())
         num2 += 1
     process_ids,process_cpu,process_mem,process_names,process_status,process_user = zip(*sorted(zip(process_ids,process_cpu,process_mem,process_names,process_status,process_user)))
     tree.delete(*tree.get_children())
@@ -418,6 +420,7 @@ def SortPID():
                     values=(
                         process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
         num += 1
+    textthread_label.set('Total number of threads:' + str(sum(process_thread)))
     
 def Sortmem():
     process_names = [proc.name() for proc in psutil.process_iter()]
@@ -425,11 +428,13 @@ def Sortmem():
     process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
     process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
     process_status = []
+    process_thread = []
     process_user = [proc.username() for proc in psutil.process_iter()]
     num2 = 0
     for index in enumerate(process_ids):
         p = psutil.Process(process_ids[num2])
         process_status.append(p.status())
+        process_thread.append(p.num_threads())
         num2 += 1
     process_mem,process_ids,process_cpu,process_names,process_status,process_user = zip(*sorted(zip(process_mem,process_ids,process_cpu,process_names,process_status,process_user)))
     tree.delete(*tree.get_children())
@@ -439,7 +444,7 @@ def Sortmem():
                     values=(
                         process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
         num += 1
-
+    textthread_label.set('Total number of threads:' + str(sum(process_thread)))
 
 def SortCPU():
     process_names = [proc.name() for proc in psutil.process_iter()]
@@ -447,11 +452,13 @@ def SortCPU():
     process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
     process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
     process_status = []
+    process_thread = []
     process_user = [proc.username() for proc in psutil.process_iter()]
     num2 = 0
     for index in enumerate(process_ids):
         p = psutil.Process(process_ids[num2])
         process_status.append(p.status())
+        process_thread.append(p.num_threads())
         num2 += 1
     process_cpu, process_mem, process_ids,process_names,process_status,process_user = zip(*sorted(zip(process_cpu, process_mem, process_ids,process_names,process_status,process_user)))
     tree.delete(*tree.get_children())
@@ -461,7 +468,8 @@ def SortCPU():
                     values=(
                         process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
         num += 1
-
+    textthread_label.set('Total number of threads:' + str(sum(process_thread)))
+        
 def Refreshtree():
     threading.Timer(60,Refreshtree).start()
     print ('start')
@@ -471,11 +479,13 @@ def Refreshtree():
     process_cpu = [proc.cpu_percent() for proc in psutil.process_iter()]
     process_mem = [proc.memory_percent() for proc in psutil.process_iter()]
     process_status = []
+    process_thread = []
     process_user = [proc.username() for proc in psutil.process_iter()]
     num2 = 0
     for index in enumerate(process_ids):
         p = psutil.Process(process_ids[num2])
         process_status.append(p.status())
+        process_thread.append(p.num_threads())
         num2 += 1
     num = 0
     for index in enumerate(process_mem):
@@ -483,6 +493,7 @@ def Refreshtree():
                     values=(
                     process_user[num], process_status[num], process_ids[num], process_cpu[num], process_mem[num]))
         num += 1
+    textthread_label.set('Total number of threads:' + str(sum(process_thread)))
         
 v0 = Tk()
 v0.config(bg = "white")
@@ -506,6 +517,10 @@ for index in enumerate(process_ids):
     num2 += 1
 
 tree = ttk.Treeview()
+textthread_label = StringVar()
+textthread_label.set('Total number of threads:' + str(sum(process_thread)))
+thread_label = Label(textvariable = textthread_label)
+thread_label.pack()
 CPUframe = ttk.Frame()
 Memframe = ttk.Frame()
 #Pestanas para el MapDisk
