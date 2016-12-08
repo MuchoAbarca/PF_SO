@@ -136,20 +136,20 @@ def process_killer():
     print ('Matamos el proceso: ' + str(process_id))
     
     
-def Datos_MapDisk():
-    
-     print('Gusta ordenarlo por...\n '
-           '\tA) Tipo de Archivo\n '
-           '\tB) Carpetas')
-    x = raw_input()
-    if str(x).upper() == 'A':
-        print ('M o s t r a n d o  D i s c o')
-        sleep(0.5)
-        Datos_MapDisk_Archivo()
-    if str(x).upper() == 'B':
-        print ('M o s t r a n d o  D i s c o')
-        sleep(0.5)
-        Datos_MapDisk_Carpeta()
+#def Datos_MapDisk():
+#    
+#     print('Gusta ordenarlo por...\n '
+#           '\tA) Tipo de Archivo\n '
+#           '\tB) Carpetas')
+#    x = raw_input()
+#    if str(x).upper() == 'A':
+#        print ('M o s t r a n d o  D i s c o')
+#        sleep(0.5)
+#        Datos_MapDisk_Archivo()
+#    if str(x).upper() == 'B':
+#        print ('M o s t r a n d o  D i s c o')
+#        sleep(0.5)
+#        Datos_MapDisk_Carpeta()
 
         
 def Lista_Procesos():
@@ -286,40 +286,41 @@ def Datos_MapDisk_Archivo():
         
         
 def Datos_MapDisk_Carpeta():
+    os.system('nohup filelight "/"')
     
-    rootDir = '/home'
-    content_list = []
-    for dirName, subdirList, fileList in os.walk(rootDir, topdown=False):
-        content_list.append(dirName)
-    size_list = []
-    for i in content_list:
-        size_list.append(bytes2human(get_size(i)))
-        # print(i, bytes2human(get_size(i)))
-    cortar(content_list)
+#    rootDir = '/home'
+#    content_list = []
+#    for dirName, subdirList, fileList in os.walk(rootDir, topdown=False):
+#        content_list.append(dirName)
+#    size_list = []
+#    for i in content_list:
+#        size_list.append(bytes2human(get_size(i)))
+            # print(i, bytes2human(get_size(i)))
+#    cortar(content_list)
         
-def cortar(content_list):
-        lista=[]
-        for i in content_list:
-                lista.append(i.rsplit('/'))
-        grafica_carpetas(lista)
+#def cortar(content_list):
+#        lista=[]
+#        for i in content_list:
+#                lista.append(i.rsplit('/'))
+#        grafica_carpetas(lista)
         
         
-def grafica_carpetas(lista):
-
-        n = len(lista)
-        theta = np.linspace((6.2795 / n), 2 * np.pi, n, endpoint=False)
-        radii = 10 * np.random.rand(n)
-        width = (6.2795 / n)
-        # 6.2795 = 360 grados
-        ax = plt.subplot(111, projection='polar')
-        bars = ax.bar(theta, radii, width=width, bottom=0.0)
+#def grafica_carpetas(lista):
+#
+#        n = len(lista)
+#        theta = np.linspace((6.2795 / n), 2 * np.pi, n, endpoint=False)
+#        radii = 10 * np.random.rand(n)
+#        width = (6.2795 / n)
+            # 6.2795 = 360 grados
+#        ax = plt.subplot(111, projection='polar')
+#        bars = ax.bar(theta, radii, width=width, bottom=0.0)
 
         # Use custom colors and opacity
-        for r, bar in zip(radii, bars):
-                bar.set_facecolor(plt.cm.jet(r / 10.))
+#        for r, bar in zip(radii, bars):
+#                bar.set_facecolor(plt.cm.jet(r / 10.))
                 # bar.set_alpha(0.5)
-        plt.axis('off')
-        plt.show()
+#        plt.axis('off')
+#        plt.show()
         
     
 def guarda_procesos():
