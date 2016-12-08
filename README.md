@@ -66,6 +66,8 @@ Se pueden combinar estas dos instrucciones escribiendo sudo apt-get install pyth
 
 Adicionalmente, se usa de Tkinter que es una interfaz con el toolkit para GUI tk, mismo que viene incluido con la distribución de Python. Para usar Tkinter se debe de realizar una instalación, que se logra mediante el siguiente comando en terminal
 sudo apt-get install python-tk
+
+Otra instalacion requerida es la de Filelight esto se logra con sudo apt-get install filelight
 ```
 
 #Todo lo relevante al proyecto esta dentro de: PF_SO/PycharmProjects/Proyecto/
