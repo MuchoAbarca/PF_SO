@@ -286,7 +286,7 @@ def Datos_MapDisk_Archivo():
         
         
 def Datos_MapDisk_Carpeta():
-    os.system('nohup filelight "/"')
+    os.system('nohup filelight "/home"')
     
 #    rootDir = '/home'
 #    content_list = []
