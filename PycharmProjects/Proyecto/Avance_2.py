@@ -401,7 +401,13 @@ def Refreshtree():
         num += 1
     textthread_label.set('Total number of threads:' + str(sum(process_thread)))
 
-
+def clean_mem():
+    os.system(" sudo sh -c 'echo 3 >/proc/sys/vm/drop_caches'")
+def deact_swap():
+    os.system(" sudo swapoff -a")
+def act_swap():
+    os.system(" sudo swapon -a")
+    
 v0 = Tk()
 v0.config(bg="white")
 v0.title("Task Monitor")
@@ -484,6 +490,14 @@ notebook.add(MDA, text='MapDisk de Archivos')
 notebook.add(MDC, text='MapDisk de Carpetas')
 
 notebook.add(EXIT, text='Salir')
+
+button_mem = Button(Memframe, text = "Free Cache", command = clean_mem)
+button_mem.pack()
+button_actswap = Button(Memframe, text = "Activate Swap", command = act_swap)
+button_actswap.pack()
+button_deactswap = Button(Memframe, text = "Deactivate Swap", command = deact_swap)
+button_deactswap.pack()
+
 # Detectar el cambio de tab
 notebook.bind("<ButtonRelease-1>", TabChange)
 v0.mainloop()
